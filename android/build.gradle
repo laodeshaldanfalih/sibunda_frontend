@@ -8,6 +8,7 @@ buildscript {
     dependencies {
         classpath 'com.android.tools.build:gradle:4.1.0'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath 'com.google.gms:google-services:4.3.8'
     }
 }
 
@@ -16,11 +17,20 @@ allprojects {
         google()
         jcenter()
     }
+    tasks.withType(JavaCompile).configureEach {
+        javaCompiler = javaToolchains.compilerFor {
+            languageVersion = JavaLanguageVersion.of(8)
+        }
+        //options.compilerArgs << '-Xlint:-options'
+        options.compilerArgs << '-Xlint:deprecation'
+    }
 }
 
 rootProject.buildDir = '../build'
 subprojects {
     project.buildDir = "${rootProject.buildDir}/${project.name}"
+}
+subprojects {
     project.evaluationDependsOn(':app')
 }
 

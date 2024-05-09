@@ -8,7 +8,7 @@ part of 'kehamilanku_api.dart';
 
 class _KehamilankuApi implements KehamilankuApi {
   _KehamilankuApi(this._dio, {this.baseUrl}) {
-    baseUrl ??= 'https://sibunda.amirmb.com/api/kehamilanku';
+    baseUrl ??= 'http://10.9.129.137/api/kehamilanku';
   }
 
   final Dio _dio;
